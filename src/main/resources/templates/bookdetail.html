@@ -90,7 +90,8 @@
 
 
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a th:href="@{/updatebook/{id} (id=${book.id})}">Update Book</a>
+                    <a th:href="@{/updatebook/{id} (id=${book.id})}">Update Book</a><br>
+                    <a th:href="@{/toggle/{id} (id=${book.id})}">Toggle Availability</a><br>
                 </div>
             </div>
         </div>

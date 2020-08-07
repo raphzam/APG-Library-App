@@ -94,10 +94,18 @@ public class HomeController {
     }
 
 
-    public String toggleStatus() {
-        return "redirect:/";
-    }
+    @RequestMapping("/toggle/{id}")
+    public String toggleStatus(@PathVariable("id") long id, Model model) {
+        Book book = bookRepository.findById(id).get();
 
+        boolean inStock = book.isInStock();
+
+        book.setInStock(!inStock);
+
+        bookRepository.save(book);
+        model.addAttribute("book", book);
+        return "bookdetail";
+    }
 }
 
 

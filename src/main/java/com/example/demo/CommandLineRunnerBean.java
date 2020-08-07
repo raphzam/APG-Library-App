@@ -20,6 +20,8 @@ public class CommandLineRunnerBean implements CommandLineRunner {
     BookRepository bookRepository;
 
 
+
+    @Override
     public void run(String...strings){
 
         //USER ROLE
@@ -90,16 +92,49 @@ public class CommandLineRunnerBean implements CommandLineRunner {
         book2.setCategory(children);
         bookRepository.save(book2);
 
-//        Book book3 = new Book();
-//        book.setCategory();
-//        book.setTitle();
-//        book.setCoverArt();
-//        book.setAuthor();
-//        book.setInStock();
-//        book.setISBN();
-//        book.setQuantity();
-//        book.setYear();
-//        bookRepository.save();
+        Book book3 = new Book();
+        book3.setCategory(fiction);
+        book3.setTitle("1984");
+        book3.setCoverArt("https://prodimage.images-bn.com/pimages/9780451524935_p0_v5_s550x406.jpg");
+        book3.setAuthor("George Orwell");
+        book3.setInStock(true);
+        book3.setISBN("9780451524935");
+        book3.setQuantity(3);
+        book3.setYear(1950);
+        bookRepository.save(book3);
+
+        Book book4 = new Book();
+        book4.setCategory(fiction);
+        book4.setTitle("Little Fire's Everywhere");
+        book4.setCoverArt("https://prodimage.images-bn.com/pimages/9780735224315_p0_v5_s550x406.jpg");
+        book4.setAuthor("Celeste Ng");
+        book4.setInStock(false);
+        book4.setISBN("9780735224315");
+        book4.setQuantity(0);
+        book4.setYear(2019);
+        bookRepository.save(book4);
+
+        Book book5 = new Book();
+        book5.setCategory(fiction);
+        book5.setTitle("The Handmaid's Tale");
+        book5.setCoverArt("https://prodimage.images-bn.com/pimages/9781984899668_p0_v1_s550x406.jpg");
+        book5.setAuthor("Margaret Atwood");
+        book5.setInStock(true);
+        book5.setISBN("9781984899668");
+        book5.setQuantity(1);
+        book5.setYear(2019);
+        bookRepository.save(book5);
+
+        Book book6 = new Book();
+        book6.setCategory(fiction);
+        book6.setTitle("Fahrenheit 451 (Re-issue)");
+        book6.setCoverArt("https://prodimage.images-bn.com/pimages/9781451673319_p0_v9_s550x406.jpg");
+        book6.setAuthor("Ray Bradbury");
+        book6.setInStock(true);
+        book6.setISBN("9781984899668");
+        book6.setQuantity(1);
+        book6.setYear(2012);
+        bookRepository.save(book6);
 
 
     }
