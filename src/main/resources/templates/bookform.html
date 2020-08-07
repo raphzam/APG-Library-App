@@ -11,15 +11,57 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5f50a1b10c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles/main.css" th:href="@{styles/main.css}">
+    <style>
+        span {
+            color: red;
+        }
+    </style>
 
     <title>New Book</title>
 </head>
 <body>
 <div th:replace="index::navLinks"></div>
 <h1>New Book</h1>
-<form th:action="@{/processbook}" th:object="${book}" method="post" enctype="multipart/form-data">
+<form autocomplete="off" onsubmit="return validateBook()" th:action="@{/processbook}" th:object="${book}" method="post"
+      enctype="multipart/form-data">
+
+    <input type="hidden" th:field="*{id}"><br>
+
+    <input type="text" id="title" th:field="*{title}" placeholder="Title">
+    <span id="title-error"></span><br>
 
 
+    <input type="text" id="isbn" th:field="*{ISBN}" placeholder="ISBN">
+    <span id="isbn-error"></span><br>
+
+    <input type="text" id="author" th:field="*{author}" placeholder="Author">
+    <span id="author-error"></span><br>
+
+    <select th:field="*{category}">
+        <option th:each="one : ${categories}"
+                th:text="${one.name}"
+                th:value="${one.id}">
+        </option>
+    </select><br>
+
+    <input type="number" id="quantity" th:field="*{quantity}" placeholder="Quantity">
+    <span id="quantity-error"></span><br>
+
+    <input type="number" id="year" th:field="*{year}" placeholder="Year Published">
+    <span id="year-error"></span><br>
+
+
+    <input type="file" name="file" value="Upload"><br>
+
+    <input type="radio" id="available" value="true" name="stock" th:field="*{inStock}" checked>
+    <label for="available">Available</label>
+
+    <input type="radio" id="unavailable" value="false" name="stock" th:field="*{inStock}">
+    <label for="unavailable">Unavailable</label>
+    <br>
+
+
+    <input type="submit" value="New Book">
 
 </form>
 
@@ -34,5 +76,61 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script>
+    function validateBook() {
+        var formValid = true;
+
+        //FIELDS
+        var title = document.getElementById("title").value;
+        var isbn = document.getElementById("isbn").value;
+        var author = document.getElementById("author").value;
+        var quantity = document.getElementById("quantity").value;
+        var year = document.getElementById("year").value;
+
+        //ERRORS
+        var titleError = document.getElementById("title-error");
+        var isbnError = document.getElementById("isbn-error");
+        var authorError = document.getElementById("author-error");
+        var quantityError = document.getElementById("quantity-error");
+        var yearError = document.getElementById("year-error");
+
+        //RESET
+        var errorMessages = document.getElementsByTagName("span");
+        for (let i = 0; i < errorMessages.length; i++) {
+            errorMessages[i].innerHTML = "";
+        }
+
+        if(!title){
+            titleError.innerHTML = "Please provide a valid title"
+            formValid = false;
+        }
+
+
+        if (!isbn || isbn.match(/[a-z-A-Z]/) || isbn.length > 15) { //2 character allowance for dashes
+            isbnError.innerHTML = "Please provide a 10 or 13 digit ISBN number"
+            formValid = false;
+        }
+
+        if(!author){
+            authorError.innerHTML = "Please provide an author"
+            formValid = false;
+        }
+
+        if(!quantity || quantity < 0){
+            quantityError.innerHTML = "Please provide a valid quantity"
+            formValid = false;
+        }
+
+        if(!year || year > 2021){
+            yearError.innerHTML = "Please provide a valid year"
+            formValid = false
+        }
+
+
+        return formValid;
+    }
+
+</script>
+
 </body>
 </html>

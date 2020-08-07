@@ -56,9 +56,20 @@
 </div>
 
 <h1>Hello, world!</h1>
-
 <div sec:authorize="isAuthenticated()">
     <div sec:authentication="name"></div>
+</div>
+
+<div th:each="category : ${categories}">
+
+    [[${category.name}]]
+
+    <div th:each="book : ${category.books}">
+
+        [[${book.title}]]
+
+    </div>
+
 </div>
 
 <!-- Optional JavaScript -->

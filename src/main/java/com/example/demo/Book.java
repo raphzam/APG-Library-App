@@ -8,7 +8,9 @@ public class Book {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
 
-    private int ISBN;
+    private String title;
+
+    private String ISBN;
 
     private String author;
 
@@ -26,6 +28,14 @@ public class Book {
     public Book() {
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public long getId() {
         return id;
     }
@@ -34,11 +44,11 @@ public class Book {
         this.id = id;
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 

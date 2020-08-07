@@ -23,7 +23,8 @@ public class HomeController {
     CloudinaryConfig cloudinaryConfig;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
         return "index";
     }
 
