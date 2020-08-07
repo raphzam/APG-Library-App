@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5f50a1b10c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{styles/main.css}">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
     <style>
         span {
             color: red;
@@ -21,49 +21,62 @@
 </head>
 <body>
 <div th:replace="index::navLinks"></div>
-<h1>New Book</h1>
-<form autocomplete="off" onsubmit="return validateBook()" th:action="@{/processbook}" th:object="${book}" method="post"
-      enctype="multipart/form-data">
 
-    <input type="hidden" th:field="*{id}"><br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">New Book</h1>
+                    <form autocomplete="off" onsubmit="return validateBook()" th:action="@{/processbook}"
+                          th:object="${book}"
+                          method="post"
+                          enctype="multipart/form-data">
 
-    <input type="text" id="title" th:field="*{title}" placeholder="Title">
-    <span id="title-error"></span><br>
+                        <input type="hidden" th:field="*{id}"><br>
 
-
-    <input type="text" id="isbn" th:field="*{ISBN}" placeholder="ISBN">
-    <span id="isbn-error"></span><br>
-
-    <input type="text" id="author" th:field="*{author}" placeholder="Author">
-    <span id="author-error"></span><br>
-
-    <select th:field="*{category}">
-        <option th:each="one : ${categories}"
-                th:text="${one.name}"
-                th:value="${one.id}">
-        </option>
-    </select><br>
-
-    <input type="number" id="quantity" th:field="*{quantity}" placeholder="Quantity">
-    <span id="quantity-error"></span><br>
-
-    <input type="number" id="year" th:field="*{year}" placeholder="Year Published">
-    <span id="year-error"></span><br>
+                        <input class="form-control" type="text" id="title" th:field="*{title}" placeholder="Title">
+                        <span id="title-error"></span><br>
 
 
-    <input type="file" name="file" value="Upload"><br>
+                        <input class="form-control" type="text" id="isbn" th:field="*{ISBN}" placeholder="ISBN">
+                        <span id="isbn-error"></span><br>
 
-    <input type="radio" id="available" value="true" name="stock" th:field="*{inStock}" checked>
-    <label for="available">Available</label>
+                        <input class="form-control" type="text" id="author" th:field="*{author}" placeholder="Author">
+                        <span id="author-error"></span><br>
 
-    <input type="radio" id="unavailable" value="false" name="stock" th:field="*{inStock}">
-    <label for="unavailable">Unavailable</label>
-    <br>
+                        <select class="form-control" th:field="*{category}">
+                            <option th:each="one : ${categories}"
+                                    th:text="${one.name}"
+                                    th:value="${one.id}">
+                            </option>
+                        </select><br>
+
+                        <input class="form-control" type="number" id="quantity" th:field="*{quantity}" placeholder="Quantity">
+                        <span id="quantity-error"></span><br>
+
+                        <input class="form-control" type="number" id="year" th:field="*{year}" placeholder="Year Published">
+                        <span id="year-error"></span><br>
 
 
-    <input type="submit" value="New Book">
+                        <input class="form-control-file" type="file" name="file" value="Upload"><br>
 
-</form>
+                        <input type="radio" id="available" value="true" name="stock" th:field="*{inStock}" checked>
+                        <label for="available">Available</label>
+
+                        <input type="radio" id="unavailable" value="false" name="stock" th:field="*{inStock}">
+                        <label for="unavailable">Unavailable</label>
+                        <br>
+
+                        <input type="submit" class="btn btn-success" value="New Book">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -100,7 +113,7 @@
             errorMessages[i].innerHTML = "";
         }
 
-        if(!title){
+        if (!title) {
             titleError.innerHTML = "Please provide a valid title"
             formValid = false;
         }
@@ -111,17 +124,17 @@
             formValid = false;
         }
 
-        if(!author){
+        if (!author) {
             authorError.innerHTML = "Please provide an author"
             formValid = false;
         }
 
-        if(!quantity || quantity < 0){
+        if (!quantity || quantity < 0) {
             quantityError.innerHTML = "Please provide a valid quantity"
             formValid = false;
         }
 
-        if(!year || year > 2021){
+        if (!year || year > 2021) {
             yearError.innerHTML = "Please provide a valid year"
             formValid = false
         }

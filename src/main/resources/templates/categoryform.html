@@ -17,13 +17,25 @@
 <body>
 <div th:replace="index::navLinks"></div>
 
-<h1>New Category</h1>
-<form autocomplete="off" onsubmit="return validateCategory()" th:action="@{/processcategory}" th:object="${category}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <input type="text" id="category-name" th:field="*{name}" placeholder="Category Name">
-    <span class="error-messages" id="category-error"></span><br>
-    <input type="submit" value="New Category">
-</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-3">
+            <div class="card">
+                <h1 class="text-center">New Category</h1>
+                <form autocomplete="off" onsubmit="return validateCategory()" th:action="@{/processcategory}"
+                      th:object="${category}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    <input type="text" class="form-control" id="category-name" th:field="*{name}" placeholder="Category Name">
+                    <span class="error-messages" id="category-error"></span><br>
+                    <input type="submit" class="btn btn-primary" style="margin-left: 30%" value="New Category">
+                </form>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

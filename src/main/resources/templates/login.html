@@ -10,27 +10,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5f50a1b10c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{styles/main.css}">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 
     <title>Login</title>
 </head>
 <body>
 <div th:replace="index::navLinks"></div>
 
-<h1>Login</h1>
-<form th:action="@{/login}" method="post">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Login</h1>
+                    <form th:action="@{/login}" method="post">
+                        <input class="form-control" type="text" name="username" placeholder="username"><br>
+                        <input class="form-control" type="password" name="password" placeholder="password"><br>
 
-    <input type="text" name="username" placeholder="username"><br>
-    <input type="password" name="password" placeholder="password"><br>
+                        <input type="submit" class="btn btn-success" style="margin-left: 40%" value="Sign in">
 
-    <input type="submit" value="Sign in">
-
-    <div th:if="${param.error}">
-        Invalid username or password
+                        <div style="color:red;" class="text-center" th:if="${param.error}">
+                            Invalid username or password
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
     </div>
+</div>
 
-
-</form>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

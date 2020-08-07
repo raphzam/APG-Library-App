@@ -10,12 +10,55 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5f50a1b10c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{styles/main.css}">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <style>
+        body {
+            background: ghostwhite;
+        }
+    </style>
 
-    <title>[[${book.title}]]</title>
+    <title>Book Detail</title>
 </head>
 <body>
-<div th:replace="index::navLinks"></div>
+
+<div th:fragment="navLinks">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" th:href="@{/}">
+            <img th:src="@{/images/javabookslogo.png}" width="60px" style="border-radius: 50%">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <div sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Login</a>
+            </div>
+            <div class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                    <div sec:authentication="name" class="d-inline"></div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="dropdown-item" th:href="@{/newcategory}" href="#">New Category</a>
+                        <a class="dropdown-item" th:href="@{/newbook}" href="#">New Book</a>
+                    </div>
+                    <form class="dropdown-item" th:action="@{/logout}" method="post"><input type="submit"
+                                                                                            class="btn btn-danger"
+                                                                                            value="Logout"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
 
 
 <div class="container-fluid">
