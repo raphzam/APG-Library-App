@@ -12,11 +12,49 @@
     <script src="https://kit.fontawesome.com/5f50a1b10c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles/main.css" th:href="@{styles/main.css}">
 
-    <title>Book Detail</title>
+    <title>[[${book.title}]]</title>
 </head>
 <body>
 <div th:replace="index::navLinks"></div>
-<h1>Book Detail</h1>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="card">
+                <h1>[[${book.title}]]</h1>
+                <div th:if="${book.coverArt} != null">
+                    <img th:src="${book.coverArt}" width="150px">
+                </div>
+                <div th:if="${book.coverArt}==null">
+                    <i class="fas fa-book-open"></i>
+                </div>
+
+                Title: [[${book.title}]]<br>
+                ISBN: [[${book.ISBN}]]<br>
+                Author: [[${book.author}]]<br>
+                Category: [[${book.category.name}]]<br>
+                Quantity: [[${book.quantity}]]<br>
+                Year Published: [[${book.year}]]<br>
+
+                In Stock: [[${book.inStock}]]<br>
+
+                <span th:if="${book.inStock} == true" style="color: green">Available</span><br>
+                <span th:if="${book.inStock} == false" style="color: red">Not Available</span><br>
+
+                <a th:href="@{/}">Go Home</a><br>
+
+
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/updatebook/{id} (id=${book.id})}">Update Book</a>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -33,15 +33,6 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
-
-    @RequestMapping("/secure")
-    public String secure() {
-        return "secure";
-    }
 
     //    CATEGORY METHODS
     @GetMapping("/newcategory")
@@ -95,6 +86,13 @@ public class HomeController {
         model.addAttribute("categories", categoryRepository.findAll());
         return "bookform";
     }
+
+    @RequestMapping("/bookdetail/{id}")
+    public String bookDetail(@PathVariable("id") long id, Model model) {
+        model.addAttribute("book", bookRepository.findById(id).get());
+        return "bookdetail";
+    }
+
 
     public String toggleStatus() {
         return "redirect:/";

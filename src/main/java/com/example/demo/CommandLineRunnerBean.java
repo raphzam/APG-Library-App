@@ -65,14 +65,29 @@ public class CommandLineRunnerBean implements CommandLineRunner {
         Category youngAdult = new Category("Young Adult");
         categoryRepository.save(youngAdult);
 
+        Category children = new Category("Children's Books");
+        categoryRepository.save(children);
+
         Book book = new Book();
-        book.setTitle("Clifford the dog");
-        book.setCategory(fiction);
+        book.setTitle("Clifford the Big Red Dog");
+//        book.setCoverArt();
+        book.setAuthor("Mary Elizabeth");
+        book.setInStock(true);
+        book.setISBN("9583720123");
+        book.setQuantity(3);
+        book.setYear(2000);
+        book.setCategory(children);
         bookRepository.save(book);
 
         Book book2 = new Book();
-        book2.setTitle("Arthur goes to school");
-        book2.setCategory(fiction);
+        book2.setTitle("Arthur Goes to School");
+//        book.setCoverArt();
+        book2.setAuthor("Marc Brown");
+        book2.setInStock(true);
+        book2.setISBN("8473920471");
+        book2.setQuantity(2);
+        book2.setYear(1999);
+        book2.setCategory(children);
         bookRepository.save(book2);
 
 //        Book book3 = new Book();
