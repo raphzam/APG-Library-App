@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+Links
+<!--BOOKS-->
+<a th:href="@{/newbook}">New Book</a>
+<a th:href="@{/processbook}">Process Book Form</a>
+<a th:href="@{/updatebook/{id} (id=${book.id})}">Update Book</a>
+<a th:href="@{/bookdetail/{id} (id=${book.id})}">View Book Detail</a>
+
+<!--CATEGORIES-->
+<a th:href="@{/newcategory}">New Category</a>
+<a th:href="@{/processcategory}">New Category</a>
+<a th:href="@{/updatecategory/{id} (id=${category.id})}">Update Category</a>
+<a th:href="@{/categoryview/{id} (id=${category.id})}">Books in This Category</a>
+
+
+
+
+
+

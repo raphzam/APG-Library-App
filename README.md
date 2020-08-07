@@ -1,1 +1,1 @@
-Spring Security Template
+Week 7 Challenge
