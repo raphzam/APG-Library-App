@@ -1,5 +1,13 @@
-package com.example.demo;
+package com.example.demo.commandlinerunner;
 
+import com.example.demo.model.Book;
+import com.example.demo.model.Category;
+import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.users.Role;
+import com.example.demo.users.RoleRepository;
+import com.example.demo.users.User;
+import com.example.demo.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

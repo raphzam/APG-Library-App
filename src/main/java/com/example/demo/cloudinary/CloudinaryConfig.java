@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.cloudinary;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Singleton;
