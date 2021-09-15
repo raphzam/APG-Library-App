@@ -27,6 +27,8 @@ public class HomeController {
     @Autowired
     CloudinaryConfig cloudinaryConfig;
 
+    //TODO: Separate mappings to different controllers
+
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
